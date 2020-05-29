@@ -2,7 +2,7 @@
 if (!empty($_GET['q'])) {
     switch ($_GET['q']) {
         case 'info':
-        phpinfo(); 
+        phpinfo();
         exit;
     break;
     }
@@ -25,34 +25,89 @@ if (!empty($_GET['q'])) {
   </button>
 
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
-    <ul class="navbar-nav mr-auto">
+    <ul class="navbar-nav ml-auto">
       <li class="nav-item active">
-        <a class="nav-link" href="phpmyadmin">PhpMyAdmin <span class="sr-only">(current)</span></a>
+        <a class="nav-link" href="phpmyadmin">PHPMyAdmin <span class="sr-only">(current)</span></a>
       </li>
       <li class="nav-item">
       <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          Projects
+        <a class="nav-link active dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        Important Project
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
           <a class="dropdown-item" href="SmartPrice">SmartPrice</a>
           <a class="dropdown-item" href="Ecommerce">Ecommerce</a>
+          <a class="dropdown-item" href="plataforma-aprendizaje-php-mysql-poo-mvc">Academia</a>
           <div class="dropdown-divider"></div>
-          <a class="dropdown-item" href="#">Created Projects</a>
+          <button type="button" class="dropdown-item" data-toggle="modal" data-target="#exampleModal">Create Project </button>
         </div>
+        <li class="nav-item active">
+          <a class="nav-link" href="#">Notes <span class="sr-only">(current)</span></a>
+        </li>
+        <li class="nav-item active">
+          <a class="nav-link" href="#">Console <span class="sr-only">(current)</span></a>
+        </li>
       </li>
-        <a class="nav-link" >Console</a>
       </li>
       <li class="nav-item">
         <a class="nav-link disabled" tabindex="-1" aria-disabled="true">Server</a>
       </li>
     </ul>
-    <form class="form-inline my-2 my-lg-0">
-      <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-      <button class="btn btn-outline-primary my-2 my-sm-0" type="submit">Search</button>
-    </form>
   </div>
 </nav>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Create Project</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form method="post" action="?action=ok">
+  <div class="form-group">
+    <label for="exampleInputEmail1">Name Project</label>
+    <input type="text" class="form-control" name="nameProject" id="InputName" aria-describedby="nameHelp" required>
+    <small id="nameHelp" class="form-text text-muted">this will be the name of the project folder.</small>
+  </div>
+  <div class="form-group">
+    <label for="exampleFormControlTextarea1">Description Project</label>
+    <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+  </div>
+  <div class="form-group form-check">
+    <input type="checkbox" class="form-check-input" id="exampleCheck1">
+    <label class="form-check-label" for="exampleCheck1">Mark as important project</label>
+  </div>
+  <input type="submit" name="submitCreat" class="btn btn-primary" value="Create">
+</form>
+      </div>
+    </div>
+  </div>
+</div>
+<?php
+if(isset($_GET['action'])){
+  if($_GET['action'] == "ok"){
+    if(isset($_POST['nameProject'])){
+      mkdir($_POST['nameProject']);
+      echo '<div class="alert alert-success" role="alert">
+            Project successfully created!
+            </div>';
+    }else{
+      echo '<div class="alert alert-danger" role="alert">
+            Error creating project!
+            </div>';
+    }
+    echo '<script>
+    setTimeout(function(){
+      window.location = ("/");
+    }, 3000);
+    </script>';
+  }
+}
+?>
 
 <!-- INFO APPS AND SERVER -->
 <div class="container">
@@ -60,10 +115,7 @@ if (!empty($_GET['q'])) {
   <div class="card-header">
     <ul class="nav nav-tabs card-header-tabs">
       <li class="nav-item">
-        <a class="nav-link active" href="#">Active</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="https://laragon.org/">Link</a>
+        <div class="nav-link active">Info</div>
       </li>
     </ul>
   </div>
@@ -101,6 +153,61 @@ if (!empty($_GET['q'])) {
   </div>
 </div>
 
+<div class="card ml-5 mt-2" style="width: 18rem;">
+  <div class="card-body">
+
+    <h5 class="card-title">CRUD-PHP-MYSQL-POO-MVC</h5>
+    <h6 class="card-subtitle mb-2 text-muted">Description</h6>
+    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+    <a href="crud-php-mysql-poo-mvc" class="card-link">Ir link</a>
+  </div>
+</div>
+
+<div class="card ml-5 mt-2" style="width: 18rem;">
+  <div class="card-body">
+    <h5 class="card-title">WordPress</h5>
+    <h6 class="card-subtitle mb-2 text-muted">Description</h6>
+    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+    <a href="wordpress" class="card-link">Ir link</a>
+  </div>
+</div>
+
+<div class="card ml-5 mt-2" style="width: 18rem;">
+  <div class="card-body">
+    <h5 class="card-title">APP-COMPLETA-PHP-MYSQL-POO</h5>
+    <h6 class="card-subtitle mb-2 text-muted">Description</h6>
+    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+    <a href="app-completa-php-mysql-poo" class="card-link">Ir link</a>
+  </div>
+</div>
+
+<div class="card ml-5 mt-2" style="width: 18rem;">
+  <div class="card-body">
+    <h5 class="card-title">LOGIN-PHP-MYSQL-POO</h5>
+    <h6 class="card-subtitle mb-2 text-muted">Description</h6>
+    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+    <a href="login-php-mysql-poo" class="card-link">Ir link</a>
+  </div>
+</div>
+
+<div class="card ml-5 mt-2" style="width: 18rem;">
+  <div class="card-body">
+    <h5 class="card-title">INFORMATIVA-PHP-MVC</h5>
+    <h6 class="card-subtitle mb-2 text-muted">Description</h6>
+    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+    <a href="informativa-php-mvc" class="card-link">Ir link</a>
+  </div>
+</div>
+
+<div class="card ml-5 mt-2" style="width: 18rem;">
+  <div class="card-body">
+    <h5 class="card-title">PLATAFORMA-APRENDIZAJE-PHP-MYSQL-POO-MVC</h5>
+    <h6 class="card-subtitle mb-2 text-muted">Description</h6>
+    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+    <a href="plataforma-aprendizaje-php-mysql-poo-mvc" class="card-link">Ir link</a>
+  </div>
+</div>
+
 
 
 </div>
@@ -115,7 +222,7 @@ if (!empty($_GET['q'])) {
             <ul class="list-unstyled list-inline text-center py-2">
             <li class="list-inline-item">
             <center>
-                <h5 class="mb-1">Created by SS Bulker</h5>
+                <h5 class="mb-1">Created by <a href="https://github.com/SS-Bulker">SS Bulker</a></h5>
             </center>
             </li>
             </ul>
